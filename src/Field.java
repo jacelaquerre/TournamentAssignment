@@ -29,6 +29,16 @@ public class Field {
         this.crew = crew;
     }
 
+    // This constructor is for FileIO where no crew is specified in csv upload
+    public Field(int ID, String name, int numGames, int age, Day day) {
+        this.ID = ID;
+        this.name = name;
+        this.numGames = numGames;
+        this.age = age;
+        this.day = day;
+        this.crew = new Crew();
+    }
+
     public int getID() {
         return ID;
     }
