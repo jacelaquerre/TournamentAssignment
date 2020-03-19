@@ -68,18 +68,14 @@ public class Crew {
     public boolean filled() {
         if (CR.getName().equals("Unknown")) {
             return false;
-        }
-        else if (AR1.getName().equals("Unknown")) {
+        } else if (AR1.getName().equals("Unknown")) {
             return false;
-        }
-        else if (AR2.getName().equals("Unknown")) {
+        } else if (AR2.getName().equals("Unknown")) {
             return false;
-        }
-        else if (standBy.getName().equals("Unknown")) {
+        } else if (standBy.getName().equals("Unknown")) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
-
+}

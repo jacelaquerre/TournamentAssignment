@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Field {
 
     public enum Day {
@@ -23,15 +20,13 @@ public class Field {
         this.crew = new Crew();
     }
 
-    public Field(int ID, String name, int numGames, int age, Day day, List<Game> games) {
+    public Field(int ID, String name, int numGames, int age, Day day, Crew crew) {
         this.ID = ID;
         this.name = name;
         this.numGames = numGames;
         this.age = age;
         this.day = day;
-        for (int i = 0; i < numGames; ++i) {
-            Crew crew = new Crew();
-        }
+        this.crew = crew;
     }
 
     public int getID() {
