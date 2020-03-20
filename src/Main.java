@@ -11,7 +11,8 @@ public class Main {
         System.out.println("4 - Print referee list");
         System.out.println("5 - Manually add field");
         System.out.println("6 - Manually add Referee");
-        System.out.println("7 - Assign referee to a field");
+        System.out.println("7 - Check if crew on a field is full or not");
+        System.out.println("8 - Assign referee to a field");
 
         Scanner scan = new Scanner(System.in);
         //////// TODO: Input validation?
@@ -38,15 +39,24 @@ public class Main {
                 System.out.println(Tournament.refList.toString());
                 break;
             case 5:
-                // TODO: case 5
                 break;
             case 6:
                 break;
             case 7:
                 break;
+            case 8:
+                break;
         }
 
         // Closing Scanner after the use
         scan.close();
+    }
+
+    public void addField(int ID, String name, int numGames, int age, Field.Day day) {
+
+    }
+
+    public void addReferee(int ID, String name, Availibility aval, int high, int low, int maxGames) {
+
     }
 }
