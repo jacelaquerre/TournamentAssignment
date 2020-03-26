@@ -1,62 +1,42 @@
-import java.util.Scanner;
+// Jace Laquerre & Aaron Slocum
+// This is a simulated referee assignment system for a sports (leaning to soccer) tournament
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Welcome to the Tournament Referee Assignment System");
-        System.out.println("Commands: ");
-        System.out.println("1 - Load field list from csv file");
-        System.out.println("2 - Load referee list from csv file");
-        System.out.println("3 - Print field list");
-        System.out.println("4 - Print referee list");
-        System.out.println("5 - Manually add field");
-        System.out.println("6 - Manually add Referee");
-        System.out.println("7 - Check if crew on a field is full or not");
-        System.out.println("8 - Assign referee to a field");
+        Tournament tourney = new Tournament();
 
-        Scanner scan = new Scanner(System.in);
-        //////// TODO: Input validation?
-        System.out.println("Enter a number: ");
-        int choice = scan.nextInt();
+        // Creating Fields
+        Field treefarm = new Field(1, "Tree Farm", 9, 16, Field.Day.SATURDAY);
+        Field sb = new Field(2, "SB",8,14, Field.Day.SUNDAY);
+        treefarm.addField(treefarm);
+        sb.addField(sb);
+        System.out.println("Testing toString on a Field:");
+        System.out.println(treefarm.toString()); // why is it not printing anything
+        System.out.println("Printing field list:");
+        tourney.printFieldList();
 
-        switch(choice) {
-            case 1:
-                FileIO fileIO = new FileIO();
-                System.out.println("Enter the name of the file: ");
-                String filename = scan.nextLine();
-                fileIO.fieldFileIO(filename);
-                break;
-            case 2:
-                FileIO fileIO2 = new FileIO();
-                System.out.println("Enter the name of the file: ");
-                String filename2 = scan.nextLine();
-                fileIO2.refFileIO(filename2);
-                break;
-            case 3:
-                System.out.println(Tournament.fieldList.toString());
-                break;
-            case 4:
-                System.out.println(Tournament.refList.toString());
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            case 7:
-                break;
-            case 8:
-                break;
-        }
+        // Creating Referees
+        Referee ref1 = new Referee();
+        Availibility jaces_aval = new Availibility(true, true);
+        Referee jace = new Referee(1, "Jace Laquerre", jaces_aval, 19, 12, 6);
+        ref1.addReferee(jace);
+        Availibility bens_aval = new Availibility(false, true);
+        ref1.addReferee(2, "Ben Crane", bens_aval,18,13,8);
+        System.out.println("Printing Referee list:");
+        tourney.printRefList();
 
-        // Closing Scanner after the use
-        scan.close();
-    }
+        // Testing the assignment
+        // Ben will be assign as CR to the field ID 1, Jace will be AR1
+        tourney.assign(1, 2);
+        tourney.assign(1, 1);
 
-    public void addField(int ID, String name, int numGames, int age, Field.Day day) {
+        tourney.printFieldList();
+        // Jace will be assigned as CR to field ID 2, Ben will be AR1
+        tourney.assign(2,1);
+        tourney.assign(2, 2);
+        tourney.printFieldList();
 
     }
 
-    public void addReferee(int ID, String name, Availibility aval, int high, int low, int maxGames) {
-
-    }
 }

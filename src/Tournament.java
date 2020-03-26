@@ -52,4 +52,49 @@ public class Tournament {
                 "Referee List: " + Tournament.refList.toString() +
                 '}';
     }
+
+    public void printRefList() {
+        System.out.println(Tournament.refList.toString());
+    }
+
+    public void printFieldList() {
+        System.out.println(Tournament.fieldList.toString());
+    }
+
+    public void assign(int fieldID, int refID) {
+        Referee ref = findRef(refID);
+        int fieldIndex = fieldList.indexOf(findField(fieldID));
+        if (fieldList.get(fieldIndex).getCrew().filled() == false) {
+            if (fieldList.get(fieldIndex).getCrew().getCR().getName().equals("Unknown")) {
+                fieldList.get(fieldIndex).getCrew().setCR(ref);
+            }
+            else if (fieldList.get(fieldIndex).getCrew().getAR1().getName().equals("Unknown")) {
+                fieldList.get(fieldIndex).getCrew().setAR1(ref);
+            }
+            else if (fieldList.get(fieldIndex).getCrew().getAR2().getName().equals("Unknown")) {
+                fieldList.get(fieldIndex).getCrew().setAR2(ref);
+            }
+            else if (fieldList.get(fieldIndex).getCrew().getStandBy().getName().equals("Unknown")) {
+                fieldList.get(fieldIndex).getCrew().setStandBy(ref);
+            }
+        }
+    }
+
+    public Referee findRef(int ID) {
+        for (Referee ref : refList) {
+            if (ref.getID() == ID) {
+                return ref;
+            }
+        }
+        return null;
+    }
+
+    public Field findField(int ID) {
+        for (Field field : fieldList) {
+            if (field.getID() == ID) {
+                return field;
+            }
+        }
+        return null;
+    }
 }

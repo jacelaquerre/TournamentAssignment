@@ -98,4 +98,13 @@ public class Field {
                 ", crew=" + crew.toString() +
                 '}';
     }
+
+    public void addField(int ID, String name, int numGames, int age, Day day) {
+        Field field = new Field(ID, name, numGames, age, day);
+        Tournament.fieldList.add(field);
+    }
+
+    public void addField(Field field) {
+        Tournament.fieldList.add(field);
+    }
 }
