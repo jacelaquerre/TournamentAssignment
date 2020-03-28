@@ -64,19 +64,35 @@ public class Tournament {
     public void assign(int fieldID, int refID) {
         Referee ref = findRef(refID);
         int fieldIndex = fieldList.indexOf(findField(fieldID));
-        if (fieldList.get(fieldIndex).getCrew().filled() == false) {
-            if (fieldList.get(fieldIndex).getCrew().getCR().getName().equals("Unknown")) {
-                fieldList.get(fieldIndex).getCrew().setCR(ref);
+        Field.Day fieldDay = fieldList.get(fieldIndex).getDay();
+        boolean refIsAval = false;
+        if (fieldDay == Field.Day.SATURDAY) {
+            refIsAval = ref.getAval().isSatAvail();
+        }
+        else if (fieldDay == Field.Day.SUNDAY) {
+            refIsAval = ref.getAval().isSunAvail();
+        }
+        else { // TBD case
+            if (!ref.getAval().isSatAvail() || !ref.getAval().isSunAvail()) {
+                System.out.println("Cannot Assign, Referee may not be available.");
+                refIsAval = false;
             }
-            else if (fieldList.get(fieldIndex).getCrew().getAR1().getName().equals("Unknown")) {
-                fieldList.get(fieldIndex).getCrew().setAR1(ref);
+        }
+        if(refIsAval) {
+            if (fieldList.get(fieldIndex).getCrew().filled() == false) {
+                if (fieldList.get(fieldIndex).getCrew().getCR().getName().equals("Unknown")) {
+                    fieldList.get(fieldIndex).getCrew().setCR(ref);
+                } else if (fieldList.get(fieldIndex).getCrew().getAR1().getName().equals("Unknown")) {
+                    fieldList.get(fieldIndex).getCrew().setAR1(ref);
+                } else if (fieldList.get(fieldIndex).getCrew().getAR2().getName().equals("Unknown")) {
+                    fieldList.get(fieldIndex).getCrew().setAR2(ref);
+                } else if (fieldList.get(fieldIndex).getCrew().getStandBy().getName().equals("Unknown")) {
+                    fieldList.get(fieldIndex).getCrew().setStandBy(ref);
+                }
             }
-            else if (fieldList.get(fieldIndex).getCrew().getAR2().getName().equals("Unknown")) {
-                fieldList.get(fieldIndex).getCrew().setAR2(ref);
-            }
-            else if (fieldList.get(fieldIndex).getCrew().getStandBy().getName().equals("Unknown")) {
-                fieldList.get(fieldIndex).getCrew().setStandBy(ref);
-            }
+        }
+        else {
+            System.out.println("Cannot Assign, Referee is not available on that day.");
         }
     }
 

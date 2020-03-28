@@ -27,7 +27,8 @@ public class Main {
         tourney.printRefList();
 
         // Testing the assignment
-        // Ben will be assign as CR to the field ID 1, Jace will be AR1
+        // Ben will be assign as CR to the field ID 1, But ben will not be assigned because hes
+        // not available on that day so Jace will become CR
         tourney.assign(1, 2);
         tourney.assign(1, 1);
 
