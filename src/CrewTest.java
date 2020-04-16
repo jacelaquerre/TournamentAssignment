@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,5 +9,6 @@ class CrewTest extends Crew {
     void testFilled() {
         Crew crew = new Crew();
         boolean filled = crew.filled();
+        Assert.assertFalse(filled);
     }
 }

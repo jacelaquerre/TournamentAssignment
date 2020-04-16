@@ -1,3 +1,5 @@
+import org.junit.Assert;
+
 import java.sql.Ref;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +28,9 @@ class TournamentTest extends Tournament {
         ref2.setID(2);
         List<Referee> refList = new ArrayList<Referee>();
         refList.add(ref1);
-        tournament.findRef(1);
-        tournament.findRef(2);
+        Assert.assertEquals(tournament.findRef(1),ref1);
+        Assert.assertEquals(tournament.findRef(2),ref2);
+
 
     }
 
@@ -40,7 +43,7 @@ class TournamentTest extends Tournament {
         field2.setID(2);
         List<Field> fieldList = new ArrayList<Field>();
         fieldList.add(field1);
-        tournament.findField(1);
-        tournament.findField(2);
+        Assert.assertEquals(tournament.findField(1),field1);
+        Assert.assertEquals(tournament.findField(2),field2);
     }
 }
